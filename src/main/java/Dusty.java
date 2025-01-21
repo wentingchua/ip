@@ -29,6 +29,12 @@ public class Dusty {
                 String done = "[X]";
                 check.set(index, done);
                 System.out.println("      " + check.get(index) + " " + store.get(index));
+            } else if (parts[0].equals("unmark")) {
+                System.out.println("    OK, I've marked this task as not done yet:");
+                int index = Integer.parseInt(parts[1]) - 1;
+                String undone = "[ ]";
+                check.set(index, undone);
+                System.out.println("      " + check.get(index) + " " + store.get(index));
             } else {
                 store.add(input);
                 String checkbox = "[ ] ";

@@ -8,7 +8,14 @@ public class Dusty {
                 + "|____/ \\__,_|_|\\_\\___|\n";
         Scanner scan = new Scanner(System.in); // create scanner object
         System.out.println("Hello! I'm Dusty\nHow can I help you?\n_______________\n");
-        String input = scan.nextLine(); // read user input
-        System.out.println(input);
+        while (true) {
+            String input = scan.nextLine(); // read user input
+            if (input.equals("bye")) {
+                System.out.println("    "+"Bye! See you next time!\n");
+                break;
+            } else {
+                System.out.println("    "+ input);
+            }
+        }
     }
 }

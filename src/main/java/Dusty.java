@@ -15,6 +15,10 @@ public class Dusty {
             if (input.equals("bye")) {
                 System.out.println("    " + "Bye! See you next time!\n");
                 break;
+            } else if (input.equals("list")) {
+                for (int i = 1; i < store.size() + 1; i++) {
+                    System.out.println("    " + i + ". " + store.get(i - 1));
+                }
             } else {
                 store.add(input);
                 System.out.println("    added: "+ input);

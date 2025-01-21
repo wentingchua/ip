@@ -35,29 +35,40 @@ public class Dusty {
                 String undone = "[ ]";
                 check.set(index, undone);
                 System.out.println("      " + check.get(index) + " " + store.get(index));
-            } else {
+            } else if (parts[0].equals("todo") || parts[0].equals("deadline") || parts[0].equals("event")) {
                 String checkbox = "[ ] ";
                 check.add(checkbox);
-                if (parts[0].equals("todo")) {
-                    type.add("[T]");
-                    store.add(parts[1]);
-                } else if (parts[0].equals("deadline")) {
-                    type.add("[D]");
-                    int firstSlash = parts[1].indexOf("/");
-                    String task = parts[1].substring(0, firstSlash - 1);
-                    String ddl = parts[1].substring(firstSlash + 1);
-                    store.add(task + " (" + ddl + ")");
-                } else if (parts[0].equals("event")) {
-                    type.add("[E]");
-                    int slashFrom = parts[1].indexOf("/from");
-                    int slashTo = parts[1].indexOf("/to");
-                    String task = parts[1].substring(0, slashFrom - 1);
-                    String from = parts[1].substring(slashFrom + 6, slashTo - 1);
-                    String to = parts[1].substring(slashTo + 4);
-                    store.add(task + " (from: " + from + " to: " + to + ")");
+                if (input.equals("todo")) {
+                    System.out.println("OOPS!!! The description of " + input + " cannot be empty.");
+                } else if (input.startsWith("deadline") && !input.contains("/")) {
+                    System.out.println("OOPS!!! Please follow this format: deadline task /due date");
+                } else if (input.startsWith("event") && (!input.contains("/from") || !input.contains("/to"))) {
+                    System.out.println("OOPS!!! Please follow this format: event task /from date /to date");
+                } else {
+                    if (parts[0].equals("todo")) {
+                        type.add("[T]");
+                        store.add(parts[1]);
+                    } else if (parts[0].equals("deadline")) {
+                        type.add("[D]");
+                        int firstSlash = parts[1].indexOf("/");
+                        String task = parts[1].substring(0, firstSlash - 1);
+                        String ddl = parts[1].substring(firstSlash + 1);
+                        store.add(task + " (" + ddl + ")");
+                    } else {
+                        type.add("[E]");
+                        int slashFrom = parts[1].indexOf("/from");
+                        int slashTo = parts[1].indexOf("/to");
+                        String task = parts[1].substring(0, slashFrom - 1);
+                        String from = parts[1].substring(slashFrom + 6, slashTo - 1);
+                        String to = parts[1].substring(slashTo + 4);
+                        store.add(task + " (from: " + from + " to: " + to + ")");
+                    }
+                    System.out.println("    Got it. I've added this task:\n" + "      "
+                            + type.get(type.size() - 1) + "[ ] " + store.get(store.size() - 1) + "\nNow you have " + store.size() + " tasks in the list.");
                 }
-                System.out.println("    Got it. I've added this task:\n"+ "      "
-                        + type.get(type.size() - 1) + "[ ] " + store.get(store.size() - 1) + "\nNow you have " + store.size() + " tasks in the list.");
+            }
+            else{
+                System.out.println("OOPS!!! I'm sorry, but I don't know what that means :( \n");
             }
         }
     }

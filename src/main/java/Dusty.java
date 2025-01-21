@@ -49,7 +49,12 @@ public class Dusty {
                     store.add(task + " (" + ddl + ")");
                 } else if (parts[0].equals("event")) {
                     type.add("[E]");
-                    store.add(parts[1]);
+                    int slashFrom = parts[1].indexOf("/from");
+                    int slashTo = parts[1].indexOf("/to");
+                    String task = parts[1].substring(0, slashFrom - 1);
+                    String from = parts[1].substring(slashFrom + 6, slashTo - 1);
+                    String to = parts[1].substring(slashTo + 4);
+                    store.add(task + " (from: " + from + " to: " + to + ")");
                 }
                 System.out.println("    Got it. I've added this task:\n"+ "      "
                         + type.get(type.size() - 1) + "[ ] " + store.get(store.size() - 1) + "\nNow you have " + store.size() + " tasks in the list.");

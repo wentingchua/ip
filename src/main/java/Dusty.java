@@ -35,6 +35,12 @@ public class Dusty {
                 String undone = "[ ]";
                 check.set(index, undone);
                 System.out.println("      " + check.get(index) + " " + store.get(index));
+            } else if (input.startsWith("delete")) {
+                int index = Integer.parseInt(parts[1]) - 1;
+                System.out.println("    Okay. I've removed this task: \n" + "      " + type.get(index) + check.get(index) + " " + store.get(index) + "\n Now you have " + store.size() + " tasks in the list.");
+                store.remove(index);
+                check.remove(index);
+                type.remove(index);
             } else if (parts[0].equals("todo") || parts[0].equals("deadline") || parts[0].equals("event")) {
                 String checkbox = "[ ] ";
                 check.add(checkbox);

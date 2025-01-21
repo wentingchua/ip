@@ -36,15 +36,23 @@ public class Dusty {
                 check.set(index, undone);
                 System.out.println("      " + check.get(index) + " " + store.get(index));
             } else {
-                store.add(parts[1]);
                 String checkbox = "[ ] ";
                 check.add(checkbox);
-                switch (parts[0]) {
-                    case "todo" -> type.add("[T]");
-                    case "deadline" -> type.add("[D]");
-                    case "event" -> type.add("[E]");
+                if (parts[0].equals("todo")) {
+                    type.add("[T]");
+                    store.add(parts[1]);
+                } else if (parts[0].equals("deadline")) {
+                    type.add("[D]");
+                    int firstSlash = parts[1].indexOf("/");
+                    String task = parts[1].substring(0, firstSlash - 1);
+                    String ddl = parts[1].substring(firstSlash + 1);
+                    store.add(task + " (" + ddl + ")");
+                } else if (parts[0].equals("event")) {
+                    type.add("[E]");
+                    store.add(parts[1]);
                 }
-                System.out.println("    Got it. I've added this task:\n"+ "      " + type.get(type.size() - 1) + "[ ] " + parts[1]);
+                System.out.println("    Got it. I've added this task:\n"+ "      "
+                        + type.get(type.size() - 1) + "[ ] " + store.get(store.size() - 1) + "\nNow you have " + store.size() + " tasks in the list.");
             }
         }
     }

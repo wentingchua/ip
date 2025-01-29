@@ -9,6 +9,7 @@ public class Dusty {
         ArrayList<String> type = new ArrayList<>();  // Store task types
         Scanner scan = new Scanner(System.in);       // Create scanner object
 
+        TaskStorage.loadTasks(type, check, store);
         System.out.println("Hello! I'm Dusty\nHow can I help you?\n_______________");
 
         while (true) {

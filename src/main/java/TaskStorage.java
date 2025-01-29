@@ -12,7 +12,7 @@ public class TaskStorage {
             BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_PATH));
 
             for (int i = 0; i < store.size(); i++) {
-                writer.write(type.get(i) + " " + check.get(i) + " " + store.get(i));
+                writer.write(type.get(i) +  " " + check.get(i) + " " + store.get(i));
                 writer.newLine();
             }
             writer.close();
@@ -29,7 +29,7 @@ public class TaskStorage {
             BufferedReader reader = new BufferedReader(new FileReader(FILE_PATH));
             String line;
             while ((line = reader.readLine()) != null) {
-                String[] parts = line.split(" ", 3);
+                String[] parts = line.split("", 3);
                 if (parts.length == 3) {
                     type.add(parts[0]);
                     check.add(parts[1]);

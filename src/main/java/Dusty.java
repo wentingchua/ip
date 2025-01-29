@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.time.LocalDateTime;
 
 public class Dusty {
     public static void main(String[] args) {
@@ -7,6 +8,7 @@ public class Dusty {
         ArrayList<String> store = new ArrayList<>(); // Store tasks
         ArrayList<String> check = new ArrayList<>(); // Store checkboxes
         ArrayList<String> type = new ArrayList<>();  // Store task types
+        ArrayList<LocalDateTime> deadlines = new ArrayList<>();
         Scanner scan = new Scanner(System.in);       // Create scanner object
 
         TaskStorage.loadTasks(type, check, store);
@@ -21,7 +23,10 @@ public class Dusty {
             } else if (input.equals("list")) {
                 System.out.println("Here are the tasks in your list:");
                 for (int i = 1; i <= store.size(); i++) {
-                    System.out.println(i + "." + type.get(i - 1) + check.get(i - 1) + store.get(i - 1));
+                    String formattedDate = (type.get(i).equals("[D]") && i < deadlines.size())
+                            ? " (by " + DateTimeParser.formatDateTime(deadlines.get(i)) + ")"
+                            : "";
+                    System.out.println((i + 1) + "." + type.get(i) + check.get(i) + store.get(i) + formattedDate);
                 }
             } else if (parts[0].equals("mark")) {
                 System.out.println("Nice! I've marked this task as done:");
@@ -42,6 +47,9 @@ public class Dusty {
                 store.remove(index);
                 check.remove(index);
                 type.remove(index);
+                if (index < deadlines.size()) {
+                    deadlines.remove(index);
+                }
                 System.out.println("Now you have " + store.size() + " tasks in the list.");
                 TaskStorage.saveTasks(type, check, store);
             } else if (parts[0].equals("todo") || parts[0].equals("deadline") || parts[0].equals("event")) {
@@ -61,8 +69,17 @@ public class Dusty {
                         type.add("[D]");
                         int slashIndex = parts[1].indexOf("/by");
                         String task = parts[1].substring(0, slashIndex - 1);
-                        String by = parts[1].substring(slashIndex + 4);
-                        store.add(task + " (by " + by + ")");
+                        String by = parts[1].substring(slashIndex + 4).trim();
+                        try {
+                            LocalDateTime deadline = DateTimeParser.parseDateTime(by);
+                            deadlines.add(deadline);
+                            store.add(task);
+                            System.out.println("Got it. I've added this deadline:");
+                            System.out.println("  " + "[D]" + "[ ]" + task + " (by " + DateTimeParser.formatDateTime(deadline) + ")");
+                        } catch (Exception e) {
+                            System.out.println("Invalid date format! Please use dd/mm/yyyy HHmm (24 hr).");
+                            continue;
+                        }
                         TaskStorage.saveTasks(type, check, store);
                     } else {
                         type.add("[E]");

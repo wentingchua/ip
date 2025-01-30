@@ -1,3 +1,9 @@
+package ui;
+
+import backend.Parser;
+import store.Storage;
+import store.TaskList;
+
 import java.util.Scanner;
 
 public class Dusty {

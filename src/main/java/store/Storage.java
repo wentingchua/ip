@@ -1,5 +1,8 @@
+package store;
+
+import backend.Parser;
+
 import java.io.*;
-import java.nio.file.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -14,9 +17,6 @@ public class Storage {
         ArrayList<Task> tasks = new ArrayList<>();
         File file = new File(filePath);
 
-        System.out.println("Checking file existence: " + file.exists());
-        System.out.println("File path: " + file.getAbsolutePath());
-
         if (!file.exists()) {
             System.out.println("File does not exist. Creating it...");
             if (file.getParentFile() != null && !file.getParentFile().exists()) {
@@ -30,24 +30,20 @@ public class Storage {
 
         // Try reading the file
         try (Scanner scanner = new Scanner(file)) {
-            System.out.println("Starting to read file...");
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
-                System.out.println("Read line: " + line);
-
                 try {
                     Task task = Parser.parseTaskFromFile(line);
                     if (task != null) {
                         tasks.add(task);
                     } else {
-                        System.out.println("Parser returned null for line: " + line);
+                        System.out.println("dusty.Parser returned null for line: " + line);
                     }
                 } catch (Exception e) {
                     System.out.println("Error parsing line: " + line);
                     e.printStackTrace();
                 }
             }
-            System.out.println("Finished reading file.");
         } catch (IOException e) {
             System.out.println("Error loading tasks from file: " + e.getMessage());
             e.printStackTrace();

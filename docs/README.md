@@ -1,4 +1,4 @@
-# Dusty User Guide
+# ui.Dusty User Guide
 
 // Update the title above to match the actual product name
 

@@ -4,7 +4,7 @@ import store.Task;
 
 public class Ui {
     public void showWelcomeMessage() {
-        System.out.println("Hello! I'm Dusty :> \nHow can I help you?\n_______________");
+        System.out.println("Hello! I'm Dusty\nHow can I help you?\n_______________");
     }
 
     public void showExitMessage() {

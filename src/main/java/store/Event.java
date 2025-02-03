@@ -16,11 +16,13 @@ public class Event extends Task {
 
     @Override
     public String toString() {
-        return "[E]" + super.toString() + " (from: " + DateTimeParser.formatDateTime(from) + " to: " + DateTimeParser.formatDateTime(to) + ")";
+        return "[E]" + super.toString() + " (from: " + DateTimeParser.formatDateTime(from)
+                + " to: " + DateTimeParser.formatDateTime(to) + ")";
     }
 
     @Override
     public String toSaveFormat() {
+
         return "E | " + getStatusIcon() + " | " + description + " | " + from + " | " + to;
     }
 }

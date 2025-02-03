@@ -29,5 +29,4 @@ public class Task {
     public String toSaveFormat() {
         return "T" + " | " + getStatusIcon() + " | " + description;
     }
-
 }

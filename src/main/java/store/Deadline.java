@@ -20,7 +20,8 @@ public class Deadline extends Task {
 
     @Override
     public String toSaveFormat() {
-        return "D | " + getStatusIcon() + " | " + description + " | " + by.format(DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm"));
+        return "D | " + getStatusIcon() + " | " + description + " | "
+                + by.format(DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm"));
     }
 
 }

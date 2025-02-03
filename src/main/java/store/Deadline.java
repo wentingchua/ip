@@ -4,7 +4,11 @@ import backend.DateTimeParser;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-
+/**
+ * Represents a deadline
+ * @author Wen Ting
+ * @version 1.0
+ */
 public class Deadline extends Task {
     protected LocalDateTime by;
 

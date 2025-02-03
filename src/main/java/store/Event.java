@@ -3,7 +3,11 @@ package store;
 import backend.DateTimeParser;
 
 import java.time.LocalDateTime;
-
+/**
+ * Represents an event
+ * @author Wen Ting
+ * @version 1.0
+ */
 public class Event extends Task {
     protected LocalDateTime from;
     protected LocalDateTime to;

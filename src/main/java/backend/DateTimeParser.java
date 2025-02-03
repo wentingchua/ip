@@ -25,7 +25,7 @@ public class DateTimeParser {
 
     public static LocalDateTime parseDateTime(String input) {
         try {
-            return LocalDateTime.parse(input); // Handles "2332-11-23T23:59"
+            return LocalDateTime.parse(input);
         } catch (DateTimeParseException e) {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm");
             return LocalDateTime.parse(input, formatter);

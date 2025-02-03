@@ -95,7 +95,8 @@ public class TaskList {
      */
     public void listTasks() {
         if (tasks.isEmpty()) {
-            System.out.println("You have no tasks ! Add one by starting your sentence with 'todo' or 'deadline' or 'event'");
+            System.out.println("You have no tasks ! Add one by starting your sentence "
+                    + "with 'todo' or 'deadline' or 'event'");
         }
         for (int i = 0; i < tasks.size(); i++) {
             System.out.println((i + 1) + "." + tasks.get(i));

@@ -93,7 +93,8 @@ public class Parser {
                     break;
             }
         } catch (Exception e) {
-            ui.showError("Invalid input or error processing command. Note that date and time should be in dd/mm/yyyy ttmm format");
+            ui.showError("Invalid input or error processing command. "
+                    + "Note that date and time should be in dd/mm/yyyy ttmm format");
         }
     }
 

@@ -1,6 +1,7 @@
 package ui;
 
 import store.Task;
+import store.TaskList;
 
 public class Ui {
     public void showWelcomeMessage() {
@@ -39,5 +40,14 @@ public class Ui {
     public void showTaskUnmarked(Task task) {
         System.out.println("OK, I've marked this task as not done yet:");
         System.out.println("  " + task);
+    }
+
+    public void showMatchedTasks(TaskList taskList) {
+        System.out.println("Here are the matching tasks in your list:");
+        taskList.listTasks();
+    }
+
+    public void showNoMatchMessage(String str) {
+        System.out.println("There are no results matching the keyword (" + str + ") in your list.");
     }
 }

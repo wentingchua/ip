@@ -75,6 +75,24 @@ public class Parser {
                     storage.saveTasks(tasks.getTasks());
                 }
                 break;
+            case "find":
+                if (details.trim().isEmpty()) {
+                    ui.showError("OOPS!!! The description of a find cannot be empty.");
+                } else {
+                    TaskList relatedTasks = new TaskList();
+                    for (int i = 0; i < tasks.getSize(); i++) {
+                        Task task = tasks.getTask(i);
+                        if (task.getDescription().contains(details)) {
+                            relatedTasks.addTask(task);
+                        }
+                    }
+                    if (relatedTasks.getSize() > 0) {
+                        ui.showMatchedTasks(relatedTasks);
+                    } else {
+                        ui.showNoMatchMessage(details);
+                    }
+                }
+                break;
             default:
                 ui.showError("OOPS!!! I'm sorry, but I don't know what that means :(");
                 break;

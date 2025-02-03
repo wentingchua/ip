@@ -14,11 +14,18 @@ public class Task {
         this.isDone = false;
     }
 
+
     /**
      * Returns String status icon that corresponds to status of task.
      * Can be printed as output.
      * @return The String that represents status of task
      */
+
+    public String getDescription() {
+        return this.description;
+    }
+
+
     public String getStatusIcon() {
         return (isDone ? "[X]" : "[ ]"); // mark done task with X
     }

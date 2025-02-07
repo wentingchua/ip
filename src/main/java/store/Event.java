@@ -1,8 +1,9 @@
 package store;
 
+import java.time.LocalDateTime;
+
 import backend.DateTimeParser;
 
-import java.time.LocalDateTime;
 /**
  * Represents an event
  * @author Wen Ting
@@ -11,7 +12,12 @@ import java.time.LocalDateTime;
 public class Event extends Task {
     protected LocalDateTime from;
     protected LocalDateTime to;
-
+    /**
+     * Constructor for Event
+     * @param description description of event
+     * @param from start of event
+     * @param to end of event
+     */
     public Event(String description, LocalDateTime from, LocalDateTime to) {
         super(description);
         this.from = from;

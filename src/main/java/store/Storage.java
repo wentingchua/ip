@@ -1,10 +1,13 @@
 package store;
 
-import backend.Parser;
-
-import java.io.*;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import backend.Parser;
 
 /**
  * The Storage class handles loading and saving tasks to a file.
@@ -84,7 +87,7 @@ public class Storage {
         // Write tasks to the file
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
             for (Task task : tasks) {
-                writer.write(task.toSaveFormat() + "\n");  // Use a consistent save format
+                writer.write(task.toSaveFormat() + "\n"); // Use a consistent save format
             }
         }
     }

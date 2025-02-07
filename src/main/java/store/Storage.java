@@ -35,8 +35,8 @@ public class Storage {
         if (!file.exists()) {
             System.out.println("File does not exist. Creating it...");
             if (file.getParentFile() != null && !file.getParentFile().exists()) {
-                boolean dirsCreated = file.getParentFile().mkdirs();
-                System.out.println("Created directories: " + dirsCreated);
+                boolean isDirectoryCreated = file.getParentFile().mkdirs();
+                System.out.println("Created directories: " + isDirectoryCreated);
             }
 
             boolean fileCreated = file.createNewFile();

@@ -1,7 +1,13 @@
 package backend;
 
-import store.*;
-import ui.*;
+import store.Deadline;
+import store.Event;
+import store.Storage;
+import store.Task;
+import store.TaskList;
+
+import ui.Dusty;
+import ui.Ui;
 
 import java.time.LocalDateTime;
 

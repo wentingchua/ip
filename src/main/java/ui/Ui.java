@@ -82,12 +82,20 @@ public class Ui {
         System.out.println("OK, I've marked this task as not done yet:");
         System.out.println("  " + task);
     }
-
+    /**
+     * Displays the tasks that match a given search keyword.
+     *
+     * @param taskList The list of matching tasks to be displayed.
+     */
     public void showMatchedTasks(TaskList taskList) {
         System.out.println("Here are the matching tasks in your list:");
         taskList.listTasks();
     }
-
+    /**
+     * Displays a message indicating that no tasks match the given keyword.
+     *
+     * @param str The search keyword that yielded no results.
+     */
     public void showNoMatchMessage(String str) {
         System.out.println("There are no results matching the keyword (" + str + ") in your list.");
     }

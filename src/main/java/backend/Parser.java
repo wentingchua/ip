@@ -1,15 +1,13 @@
 package backend;
+import java.time.LocalDateTime;
 
 import store.Deadline;
 import store.Event;
 import store.Storage;
 import store.Task;
 import store.TaskList;
-
-import ui.Dusty;
 import ui.Ui;
 
-import java.time.LocalDateTime;
 
 /**
  * The Parser class handles parsing user input and executing commands.
@@ -146,18 +144,20 @@ public class Parser {
 
         try {
             switch (type) {
-                case "T":
-                    task = new Task(description);
-                    break;
-                case "D":
-                    LocalDateTime by = DateTimeParser.parseDateTime(parts[3]);
-                    task = new Deadline(description, by);
-                    break;
-                case "E":
-                    LocalDateTime from = DateTimeParser.parseDateTime(parts[3]);
-                    LocalDateTime to = DateTimeParser.parseDateTime(parts[4]);
-                    task = new Event(description, from, to);
-                    break;
+            case "T":
+                task = new Task(description);
+                break;
+            case "D":
+                LocalDateTime by = DateTimeParser.parseDateTime(parts[3]);
+                task = new Deadline(description, by);
+                break;
+            case "E":
+                LocalDateTime from = DateTimeParser.parseDateTime(parts[3]);
+                LocalDateTime to = DateTimeParser.parseDateTime(parts[4]);
+                task = new Event(description, from, to);
+                break;
+            default:
+                break;
             }
 
             if (task != null && isDone) {
@@ -171,5 +171,4 @@ public class Parser {
 
         return task;
     }
-
 }

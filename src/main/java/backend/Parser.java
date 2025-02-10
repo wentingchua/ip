@@ -23,13 +23,15 @@ public class Parser {
      * @param storage The Storage object to save and load tasks.
      * @param ui      The Ui object to display messages to the user.
      */
-    public static void handleCommand(String input, TaskList tasks, Storage storage, Ui ui) {
+    public static String handleCommand(String input, TaskList tasks, Storage storage, Ui ui) {
         String[] parts = input.split(" ", 2);
         String command = parts[0];
         String details = parts.length > 1 ? parts[1] : "";
 
         try {
             switch (command) {
+            case "bye":
+                return ui.showExitMessage();
             case "list":
                 tasks.listTasks();
                 break;
@@ -111,13 +113,13 @@ public class Parser {
                 }
                 break;
             default:
-                ui.showError("OOPS!!! I'm sorry, but I don't know what that means :(");
-                break;
+                return ui.showError("OOPS!!! I'm sorry, but I don't know what that means :(");
             }
         } catch (Exception e) {
-            ui.showError("Invalid input or error processing command. "
+            return ui.showError("Invalid input or error processing command. "
                     + "Note that date and time should be in dd/mm/yyyy ttmm format");
         }
+        return command;
     }
 
     /**

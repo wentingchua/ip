@@ -10,9 +10,10 @@ import store.TaskList;
  * The main class for Dusty
  */
 public class Dusty {
-    private final Storage storage;
+    public final Storage storage;
+    public final Ui ui;
     private TaskList tasks;
-    private final Ui ui;
+
     /**
      * Initializes a new instance of the Dusty application.
      *
@@ -45,7 +46,15 @@ public class Dusty {
         }
     }
 
+    public TaskList getTasks() {
+        return this.tasks;
+    }
+    public String getResponse(String input) {
+        return "Dusty heard: " + input;
+    }
+
     public static void main(String[] args) {
-        new Dusty("data/tasks.txt").run();
+        System.out.println("Hello!");
     }
 }
+

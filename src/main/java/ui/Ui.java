@@ -19,8 +19,8 @@ public class Ui {
     /**
      * Displays the exit message to the user.
      */
-    public void showExitMessage() {
-        System.out.println("Bye! See you next time!");
+    public String showExitMessage() {
+        return "Bye! See you next time!";
     }
 
     /**
@@ -35,8 +35,8 @@ public class Ui {
      *
      * @param message The error message to display.
      */
-    public void showError(String message) {
-        System.out.println(message);
+    public String showError(String message) {
+        return message;
     }
 
     /**

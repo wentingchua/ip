@@ -1,7 +1,7 @@
 package store;
 
 /**
- * Represents a todo object.
+ * Represents a Task
  * @author Wen Ting
  * @version 1.0
  */
@@ -49,10 +49,10 @@ public class Task {
 
     @Override
     public String toString() {
-        return "[T]" + getStatusIcon() + " " + description;
+        return getStatusIcon() + " " + description;
     }
 
     public String toSaveFormat() {
-        return "T" + " | " + getStatusIcon() + " | " + description;
+        return getStatusIcon() + " | " + description;
     }
 }

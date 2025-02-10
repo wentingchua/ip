@@ -10,93 +10,88 @@ import store.TaskList;
 public class Ui {
 
     /**
-     * Displays the welcome message to the user.
+     * Returns the welcome message to the user.
      */
-    public void showWelcomeMessage() {
-        System.out.println("Hello! I'm Dusty\nHow can I help you?\n_______________");
+    public String showWelcomeMessage() {
+        return "Hello! I'm Dusty\nHow can I help you?\n_______________";
     }
 
     /**
-     * Displays the exit message to the user.
+     * Returns the exit message to the user.
      */
     public String showExitMessage() {
         return "Bye! See you next time!";
     }
 
     /**
-     * Displays an error message indicating that loading tasks from the file failed.
+     * Returns an error message indicating that loading tasks from the file failed.
      */
-    public void showLoadingError() {
-        System.out.println("Error loading tasks from file.");
+    public String showLoadingError() {
+        return "Error loading tasks from file.";
     }
 
     /**
-     * Displays an error message to the user.
+     * Returns an error message to the user.
      *
-     * @param message The error message to display.
+     * @param message The error message to return.
      */
     public String showError(String message) {
         return message;
     }
 
     /**
-     * Displays a message confirming that a task has been added.
+     * Returns a message confirming that a task has been added.
      *
      * @param task The added Task object.
      * @param size The current number of tasks in the list.
      */
-    public void showTaskAdded(Task task, int size) {
-        System.out.println("Got it. I've added this task:");
-        System.out.println("  " + task);
-        System.out.println("Now you have " + size + " tasks in the list.");
+    public String showTaskAdded(Task task, int size) {
+        return "Got it. I've added this task:\n  " + task + "\nNow you have " + size + " tasks in the list.";
     }
 
     /**
-     * Displays a message confirming that a task has been deleted.
+     * Returns a message confirming that a task has been deleted.
      *
      * @param task The deleted Task object.
      * @param size The current number of tasks in the list.
      */
-    public void showTaskDeleted(Task task, int size) {
-        System.out.println("Okay. I've removed this task:");
-        System.out.println("  " + task);
-        System.out.println("Now you have " + size + " tasks in the list.");
+    public String showTaskDeleted(Task task, int size) {
+        return "Okay. I've removed this task:\n  " + task + "\nNow you have " + size + " tasks in the list.";
     }
 
     /**
-     * Displays a message confirming that a task has been marked as done.
+     * Returns a message confirming that a task has been marked as done.
      *
      * @param task The Task object that was marked as done.
      */
-    public void showTaskMarked(Task task) {
-        System.out.println("Nice! I've marked this task as done:");
-        System.out.println("  " + task);
+    public String showTaskMarked(Task task) {
+        return "Nice! I've marked this task as done:\n  " + task;
     }
 
     /**
-     * Displays a message confirming that a task has been marked as not done.
+     * Returns a message confirming that a task has been marked as not done.
      *
      * @param task The Task object that was marked as not done.
      */
-    public void showTaskUnmarked(Task task) {
-        System.out.println("OK, I've marked this task as not done yet:");
-        System.out.println("  " + task);
+    public String showTaskUnmarked(Task task) {
+        return "OK, I've marked this task as not done yet:\n  " + task;
     }
+
     /**
-     * Displays the tasks that match a given search keyword.
+     * Returns the tasks that match a given search keyword.
      *
      * @param taskList The list of matching tasks to be displayed.
      */
-    public void showMatchedTasks(TaskList taskList) {
-        System.out.println("Here are the matching tasks in your list:");
-        taskList.listTasks();
+    public String showMatchedTasks(TaskList taskList) {
+        return "Here are the matching tasks in your list:\n" + taskList.listTasksAsString();
     }
+
     /**
-     * Displays a message indicating that no tasks match the given keyword.
+     * Returns a message indicating that no tasks match the given keyword.
      *
      * @param str The search keyword that yielded no results.
      */
-    public void showNoMatchMessage(String str) {
-        System.out.println("There are no results matching the keyword (" + str + ") in your list.");
+    public String showNoMatchMessage(String str) {
+        return "There are no results matching the keyword (" + str + ") in your list.";
     }
 }

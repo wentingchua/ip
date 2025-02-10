@@ -6,6 +6,7 @@ import store.Event;
 import store.Storage;
 import store.Task;
 import store.TaskList;
+import store.Todo;
 import ui.Ui;
 
 
@@ -33,40 +34,35 @@ public class Parser {
             case "bye":
                 return ui.showExitMessage();
             case "list":
-                tasks.listTasks();
-                break;
+                return tasks.listTasksAsString();
             case "mark":
                 int markIndex = Integer.parseInt(details) - 1;
                 tasks.markTaskAsDone(markIndex);
-                ui.showTaskMarked(tasks.getTask(markIndex));
                 storage.saveTasks(tasks.getTasks());
-                break;
+                return ui.showTaskMarked(tasks.getTask(markIndex));
             case "unmark":
                 int unmarkIndex = Integer.parseInt(details) - 1;
                 tasks.markTaskAsNotDone(unmarkIndex);
-                ui.showTaskUnmarked(tasks.getTask(unmarkIndex));
                 storage.saveTasks(tasks.getTasks());
-                break;
+                return ui.showTaskUnmarked(tasks.getTask(unmarkIndex));
             case "delete":
                 int deleteIndex = Integer.parseInt(details) - 1;
                 Task deletedTask = tasks.getTask(deleteIndex);
                 tasks.deleteTask(deleteIndex);
-                ui.showTaskDeleted(deletedTask, tasks.getSize());
                 storage.saveTasks(tasks.getTasks());
-                break;
+                return ui.showTaskDeleted(deletedTask, tasks.getSize());
             case "todo":
                 if (details.trim().isEmpty()) {
-                    ui.showError("OOPS!!! The description of a todo cannot be empty.");
+                    return ui.showError("OOPS!!! The description of a todo cannot be empty.");
                 } else {
-                    Task todo = new Task(details);
+                    Task todo = new Todo(details);
                     tasks.addTask(todo);
-                    ui.showTaskAdded(todo, tasks.getSize());
                     storage.saveTasks(tasks.getTasks());
+                    return ui.showTaskAdded(todo, tasks.getSize());
                 }
-                break;
             case "deadline":
                 if (!details.contains("/by")) {
-                    ui.showError("OOPS!!! Please follow this format: deadline task /by date");
+                    return ui.showError("OOPS!!! Please follow this format: deadline task /by date");
                 } else {
                     String[] deadlineParts = details.split("/by", 2);
                     String task = deadlineParts[0].trim();
@@ -74,13 +70,12 @@ public class Parser {
                     LocalDateTime deadline = DateTimeParser.parseDateTime(by);
                     Task deadlineTask = new Deadline(task, deadline);
                     tasks.addTask(deadlineTask);
-                    ui.showTaskAdded(deadlineTask, tasks.getSize());
                     storage.saveTasks(tasks.getTasks());
+                    return ui.showTaskAdded(deadlineTask, tasks.getSize());
                 }
-                break;
             case "event":
                 if (!details.contains("/from") || !details.contains("/to")) {
-                    ui.showError("OOPS!!! Please follow this format: event task /from time /to time");
+                    return ui.showError("OOPS!!! Please follow this format: event task /from time /to time");
                 } else {
                     String[] eventParts = details.split("/from|/to");
                     String task = eventParts[0].trim();
@@ -90,10 +85,9 @@ public class Parser {
                     LocalDateTime end = DateTimeParser.parseDateTime(to);
                     Task eventTask = new Event(task, start, end);
                     tasks.addTask(eventTask);
-                    ui.showTaskAdded(eventTask, tasks.getSize());
                     storage.saveTasks(tasks.getTasks());
+                    return ui.showTaskAdded(eventTask, tasks.getSize());
                 }
-                break;
             case "find":
                 if (details.trim().isEmpty()) {
                     ui.showError("OOPS!!! The description of a find cannot be empty.");
@@ -106,9 +100,9 @@ public class Parser {
                         }
                     }
                     if (relatedTasks.getSize() > 0) {
-                        ui.showMatchedTasks(relatedTasks);
+                        return ui.showMatchedTasks(relatedTasks);
                     } else {
-                        ui.showNoMatchMessage(details);
+                        return ui.showNoMatchMessage(details);
                     }
                 }
                 break;
@@ -119,7 +113,7 @@ public class Parser {
             return ui.showError("Invalid input or error processing command. "
                     + "Note that date and time should be in dd/mm/yyyy ttmm format");
         }
-        return command;
+        return "OOPS!!! I'm sorry, but I don't know what that means";
     }
 
     /**
@@ -147,7 +141,7 @@ public class Parser {
         try {
             switch (type) {
             case "T":
-                task = new Task(description);
+                task = new Todo(description);
                 break;
             case "D":
                 LocalDateTime by = DateTimeParser.parseDateTime(parts[3]);

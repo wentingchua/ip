@@ -93,13 +93,17 @@ public class TaskList {
      * a message indicating no tasks is printed.  Otherwise, each task is
      * printed with its index (starting from 1).
      */
-    public void listTasks() {
+    public String listTasksAsString() {
         if (tasks.isEmpty()) {
-            System.out.println("You have no tasks ! Add one by starting your sentence "
-                    + "with 'todo' or 'deadline' or 'event'");
+            return "You have no tasks! Add one by starting your sentence with 'todo', 'deadline', or 'event'.";
         }
+
+        StringBuilder taskListString = new StringBuilder();
         for (int i = 0; i < tasks.size(); i++) {
-            System.out.println((i + 1) + "." + tasks.get(i));
+            taskListString.append(i + 1).append(". ").append(tasks.get(i)).append("\n");
         }
+
+        return taskListString.toString().trim();
     }
+
 }

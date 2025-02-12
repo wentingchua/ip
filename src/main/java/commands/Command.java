@@ -21,6 +21,10 @@ public abstract class Command {
         this.details = details;
     }
 
+    public String getDetails() {
+        return this.details;
+    }
+
     /**
      * Method that executes the tasks related to the command
      * @param tasks The TaskList to work with.

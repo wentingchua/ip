@@ -50,9 +50,6 @@ public class Dusty {
     public TaskList getTasks() {
         return this.tasks;
     }
-    public String getResponse(String input) {
-        return "Dusty heard: " + input;
-    }
 
     public static void main(String[] args) {
         System.out.println("Hello!");

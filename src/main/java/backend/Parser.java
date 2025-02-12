@@ -1,6 +1,10 @@
 package backend;
 import java.time.LocalDateTime;
 
+import commands.Command;
+import commands.ByeCommand;
+import commands.ListCommand;
+import commands.MarkCommand;
 import store.Deadline;
 import store.Event;
 import store.Storage;
@@ -32,14 +36,14 @@ public class Parser {
         try {
             switch (command) {
             case "bye":
-                return ui.showExitMessage();
+                Command bye = new ByeCommand();
+                return bye.execute(tasks, storage, ui);
             case "list":
-                return tasks.listTasksAsString();
+                Command list = new ListCommand();
+                return list.execute(tasks, storage, ui);
             case "mark":
-                int markIndex = Integer.parseInt(details) - 1;
-                tasks.markTaskAsDone(markIndex);
-                storage.saveTasks(tasks.getTasks());
-                return ui.showTaskMarked(tasks.getTask(markIndex));
+                Command mark = new MarkCommand(details);
+                return mark.execute(tasks, storage, ui);
             case "unmark":
                 int unmarkIndex = Integer.parseInt(details) - 1;
                 tasks.markTaskAsNotDone(unmarkIndex);

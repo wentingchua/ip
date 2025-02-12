@@ -20,6 +20,7 @@ public class Dusty {
      * @param filePath The file path for storing task data.
      */
     public Dusty(String filePath) {
+        assert filePath != null && !filePath.isEmpty() : "File path should not be null or empty";
         ui = new Ui();
         storage = new Storage(filePath);
         try {
@@ -48,9 +49,6 @@ public class Dusty {
 
     public TaskList getTasks() {
         return this.tasks;
-    }
-    public String getResponse(String input) {
-        return "Dusty heard: " + input;
     }
 
     public static void main(String[] args) {

@@ -33,6 +33,7 @@ public class MainWindow extends AnchorPane {
 
     /** Injects the Duke instance */
     public void setDuke(Dusty d) {
+        assert d != null : "Dusty instance should not be null";
         dusty = d;
     }
 

@@ -1,10 +1,7 @@
 package backend;
 import java.time.LocalDateTime;
 
-import commands.Command;
-import commands.ByeCommand;
-import commands.ListCommand;
-import commands.MarkCommand;
+import commands.*;
 import store.Deadline;
 import store.Event;
 import store.Storage;
@@ -45,79 +42,30 @@ public class Parser {
                 Command mark = new MarkCommand(details);
                 return mark.execute(tasks, storage, ui);
             case "unmark":
-                int unmarkIndex = Integer.parseInt(details) - 1;
-                tasks.markTaskAsNotDone(unmarkIndex);
-                storage.saveTasks(tasks.getTasks());
-                return ui.showTaskUnmarked(tasks.getTask(unmarkIndex));
+                Command unmark = new UnmarkCommand(details);
+                return unmark.execute(tasks, storage, ui);
             case "delete":
-                int deleteIndex = Integer.parseInt(details) - 1;
-                Task deletedTask = tasks.getTask(deleteIndex);
-                tasks.deleteTask(deleteIndex);
-                storage.saveTasks(tasks.getTasks());
-                return ui.showTaskDeleted(deletedTask, tasks.getSize());
+                Command delete = new DeleteCommand(details);
+                return delete.execute(tasks, storage, ui);
             case "todo":
-                if (details.trim().isEmpty()) {
-                    return ui.showError("OOPS!!! The description of a todo cannot be empty.");
-                } else {
-                    Task todo = new Todo(details);
-                    tasks.addTask(todo);
-                    storage.saveTasks(tasks.getTasks());
-                    return ui.showTaskAdded(todo, tasks.getSize());
-                }
+                Command todo = new TodoCommand(details);
+                return todo.execute(tasks, storage, ui);
             case "deadline":
-                if (!details.contains("/by")) {
-                    return ui.showError("OOPS!!! Please follow this format: deadline task /by date");
-                } else {
-                    String[] deadlineParts = details.split("/by", 2);
-                    String task = deadlineParts[0].trim();
-                    String by = deadlineParts[1].trim();
-                    LocalDateTime deadline = DateTimeParser.parseDateTime(by);
-                    Task deadlineTask = new Deadline(task, deadline);
-                    tasks.addTask(deadlineTask);
-                    storage.saveTasks(tasks.getTasks());
-                    return ui.showTaskAdded(deadlineTask, tasks.getSize());
-                }
+                Command deadline = new DeadlineCommand(details);
+                return deadline.execute(tasks, storage, ui);
             case "event":
-                if (!details.contains("/from") || !details.contains("/to")) {
-                    return ui.showError("OOPS!!! Please follow this format: event task /from time /to time");
-                } else {
-                    String[] eventParts = details.split("/from|/to");
-                    String task = eventParts[0].trim();
-                    String from = eventParts[1].trim();
-                    String to = eventParts[2].trim();
-                    LocalDateTime start = DateTimeParser.parseDateTime(from);
-                    LocalDateTime end = DateTimeParser.parseDateTime(to);
-                    Task eventTask = new Event(task, start, end);
-                    tasks.addTask(eventTask);
-                    storage.saveTasks(tasks.getTasks());
-                    return ui.showTaskAdded(eventTask, tasks.getSize());
-                }
+                Command event = new EventCommand(details);
+                return event.execute(tasks, storage, ui);
             case "find":
-                if (details.trim().isEmpty()) {
-                    ui.showError("OOPS!!! The description of a find cannot be empty.");
-                } else {
-                    TaskList relatedTasks = new TaskList();
-                    for (int i = 0; i < tasks.getSize(); i++) {
-                        Task task = tasks.getTask(i);
-                        if (task.getDescription().contains(details)) {
-                            relatedTasks.addTask(task);
-                        }
-                    }
-                    if (relatedTasks.getSize() > 0) {
-                        return ui.showMatchedTasks(relatedTasks);
-                    } else {
-                        return ui.showNoMatchMessage(details);
-                    }
-                }
-                break;
+                Command find = new FindCommand(details);
+                return find.execute(tasks, storage, ui);
             default:
                 return ui.showError("OOPS!!! I'm sorry, but I don't know what that means :(");
             }
         } catch (Exception e) {
             return ui.showError("Invalid input or error processing command. "
-                    + "Note that date and time should be in dd/mm/yyyy tt/mm format");
+                    + "Note that date and time should be in dd/mm/yyyy ttmm format");
         }
-        return "OOPS!!! I'm sorry, but I don't know what that means";
     }
 
     /**

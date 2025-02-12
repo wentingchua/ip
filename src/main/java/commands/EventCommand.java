@@ -1,0 +1,98 @@
+package commands;
+
+import backend.DateTimeParser;
+import store.Storage;
+import store.TaskList;
+import store.Event;
+import ui.Ui;
+
+import java.io.IOException;
+import java.time.LocalDateTime;
+
+/**
+ * Class representing the Event command
+ */
+public class EventCommand extends Command {
+    private String eventTask;
+    private String from;
+    private String to;
+    private LocalDateTime start;
+    private LocalDateTime end;
+    private Event eventTaskObject;
+
+    /**
+     * Constructor for EventCommand
+     * @param details The event details string
+     */
+    public EventCommand(String details) {
+        super(details);
+        breakDownTask(details);
+    }
+
+    /**
+     * Method to break down task details into task, start time, and end time
+     * @param details of the task
+     */
+    private void breakDownTask(String details) {
+        String[] eventParts = details.split("/from|/to");
+        eventTask = eventParts[0].trim();
+        from = eventParts[1].trim();
+        to = eventParts[2].trim();
+        start = DateTimeParser.parseDateTime(from);
+        end = DateTimeParser.parseDateTime(to);
+    }
+
+    /**
+     * Method to check if command was formatted correctly
+     * @return True if incorrectly formatted
+     */
+    public boolean isWrongFormat() {
+        return !(super.getDetails().contains("/from") && super.getDetails().contains("/to"));
+    }
+
+    /**
+     * Method to show error message for incorrect format
+     * @param ui UI to display the message
+     * @return system error message
+     */
+    public String showErrorMessage(Ui ui) {
+        return ui.showError("OOPS!!! Please follow this format: event task /from time /to time");
+    }
+
+    /**
+     * Method to add event task to the task list
+     * @param tasks TaskList to add the event
+     */
+    private void addEventTask(TaskList tasks) {
+        eventTaskObject = new Event(eventTask, start, end);
+        tasks.addTask(eventTaskObject);
+    }
+
+    /**
+     * Method to show event added message
+     * @param ui UI to display the message
+     * @param tasks TaskList to check size
+     * @return system message
+     */
+    private String showEventMessage(Ui ui, TaskList tasks) {
+        return ui.showTaskAdded(eventTaskObject, tasks.getSize());
+    }
+
+    /**
+     * Method to execute command
+     * @param tasks The TaskList to work with.
+     * @param storage The Storage to save or load tasks
+     * @param ui The messages the user will see
+     * @return system message
+     * @throws IOException
+     */
+    @Override
+    public String execute(TaskList tasks, Storage storage, Ui ui) throws IOException {
+        if (isWrongFormat()) {
+            return showErrorMessage(ui);
+        }
+        addEventTask(tasks);
+        super.saveTasks(tasks, storage);
+        return showEventMessage(ui, tasks);
+    }
+}

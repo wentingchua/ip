@@ -8,19 +8,18 @@ import ui.Ui;
 import java.io.IOException;
 
 /**
- * Class representing the Mark command
+ * Class representing the Unmark command
  */
-public class MarkCommand extends Command {
-
-    private int markIndex;
+public class UnmarkCommand extends Command {
+    private int unmarkIndex;
 
     /**
-     * Constructor for MarkCommand
-     * @param details of command
+     * Constructor for UnmarkCommand
+     * @param details of task
      */
-    public MarkCommand(String details) {
+    public UnmarkCommand(String details) {
         super(details);
-        this.markIndex = Integer.parseInt(details) - 1;
+        this.unmarkIndex = Integer.parseInt(details) - 1;
     }
 
     /**
@@ -32,9 +31,9 @@ public class MarkCommand extends Command {
      * @throws IOException
      */
     @Override
-    public String execute(TaskList tasks, Storage storage, Ui ui) throws IOException {
-        tasks.markTaskAsDone(markIndex);
+    public String execute(TaskList tasks, Storage storage,Ui ui) throws IOException {
+        tasks.markTaskAsNotDone(unmarkIndex);
         super.saveTasks(tasks, storage);
-        return ui.showTaskMarked(tasks.getTask(markIndex));
+        return ui.showTaskUnmarked(tasks.getTask(unmarkIndex));
     }
 }

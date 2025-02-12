@@ -19,14 +19,22 @@ public class Main extends Application {
     public void start(Stage stage) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/MainWindow.fxml"));
+            assert Main.class.getResource("/MainWindow.fxml") != null : "FXML resource not found!";
+
             AnchorPane ap = fxmlLoader.load();
+            assert ap != null : "Failed to load AnchorPane from FXML!";
+
             Scene scene = new Scene(ap);
             stage.setScene(scene);
+
+            assert fxmlLoader.getController() != null : "FXML Controller is null!";
             fxmlLoader.<MainWindow>getController().setDuke(dusty);
+
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
 }
 

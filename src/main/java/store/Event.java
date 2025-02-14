@@ -1,8 +1,10 @@
 package store;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import backend.DateTimeParser;
+import tag.Tag;
 
 /**
  * Represents an event
@@ -18,8 +20,8 @@ public class Event extends Task {
      * @param from start of event
      * @param to end of event
      */
-    public Event(String description, LocalDateTime from, LocalDateTime to) {
-        super(description);
+    public Event(String description, List<Tag> tags, LocalDateTime from, LocalDateTime to) {
+        super(description, tags);
         this.from = from;
         this.to = to;
     }

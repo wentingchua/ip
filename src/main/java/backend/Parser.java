@@ -1,5 +1,7 @@
 package backend;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import commands.*;
 import store.Deadline;
@@ -8,6 +10,7 @@ import store.Storage;
 import store.Task;
 import store.TaskList;
 import store.Todo;
+import tag.Tag;
 import ui.Ui;
 
 
@@ -30,6 +33,11 @@ public class Parser {
         String command = parts[0];
         String details = parts.length > 1 ? parts[1] : "";
 
+        // Extract tags and clean details
+        TagExtractionResult extractionResult = extractTags(details);
+        details = extractionResult.cleanedDetails;
+        List<Tag> tags = extractionResult.tags;
+
         try {
             switch (command) {
             case "bye":
@@ -48,17 +56,19 @@ public class Parser {
                 Command delete = new DeleteCommand(details);
                 return delete.execute(tasks, storage, ui);
             case "todo":
-                Command todo = new TodoCommand(details);
+                Command todo = new TodoCommand(details, tags);
                 return todo.execute(tasks, storage, ui);
             case "deadline":
-                Command deadline = new DeadlineCommand(details);
+                Command deadline = new DeadlineCommand(details, tags);
                 return deadline.execute(tasks, storage, ui);
             case "event":
-                Command event = new EventCommand(details);
+                Command event = new EventCommand(details, tags);
                 return event.execute(tasks, storage, ui);
             case "find":
                 Command find = new FindCommand(details);
                 return find.execute(tasks, storage, ui);
+            case "findtag":
+                return new FindTagCommand(details).execute(tasks, storage, ui);
             default:
                 return ui.showError("OOPS!!! I'm sorry, but I don't know what that means :(");
             }
@@ -67,6 +77,28 @@ public class Parser {
                     + "Note that date and time should be in dd/mm/yyyy ttmm format");
         }
     }
+
+    /**
+     * Extracts tags from the input string and returns both cleaned details and the list of tags.
+     *
+     * @param input The user input containing details and potential tags.
+     * @return A TagExtractionResult containing the cleaned details and extracted tags.
+     */
+    private static TagExtractionResult extractTags(String input) {
+        List<Tag> tags = new ArrayList<>();
+        StringBuilder cleanDetails = new StringBuilder();
+
+        for (String word : input.split(" ")) {
+            if (word.startsWith("#")) {
+                tags.add(new Tag(word.substring(1))); // Remove '#' and store as Tag object
+            } else {
+                cleanDetails.append(word).append(" ");
+            }
+        }
+
+        return new TagExtractionResult(cleanDetails.toString().trim(), tags);
+    }
+
 
     /**
      * Parses a task from a line read from the data file.
@@ -90,19 +122,24 @@ public class Parser {
         String description = parts[2];
         Task task = null;
 
+        // Extract tags and clean details
+        TagExtractionResult extractionResult = extractTags(description);
+        description = extractionResult.cleanedDetails;
+        List<Tag> tags = extractionResult.tags;
+
         try {
             switch (type) {
             case "T":
-                task = new Todo(description);
+                task = new Todo(description, tags);
                 break;
             case "D":
                 LocalDateTime by = DateTimeParser.parseDateTime(parts[3]);
-                task = new Deadline(description, by);
+                task = new Deadline(description, tags, by);
                 break;
             case "E":
                 LocalDateTime from = DateTimeParser.parseDateTime(parts[3]);
                 LocalDateTime to = DateTimeParser.parseDateTime(parts[4]);
-                task = new Event(description, from, to);
+                task = new Event(description, tags, from, to);
                 break;
             default:
                 break;
@@ -118,5 +155,18 @@ public class Parser {
         }
 
         return task;
+    }
+
+    /**
+     * Helper class to store the result of tag extraction.
+     */
+    private static class TagExtractionResult {
+        String cleanedDetails;
+        List<Tag> tags;
+
+        TagExtractionResult(String cleanedDetails, List<Tag> tags) {
+            this.cleanedDetails = cleanedDetails;
+            this.tags = tags;
+        }
     }
 }

@@ -4,10 +4,12 @@ import backend.DateTimeParser;
 import store.Storage;
 import store.TaskList;
 import store.Deadline;
+import tag.Tag;
 import ui.Ui;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.util.List;
 
 /**
  * Class representing the Deadline command
@@ -18,14 +20,16 @@ public class DeadlineCommand extends Command {
     private LocalDateTime formattedBy;
 
     private Deadline deadlineTaskObject;
+    private final List<Tag> tags;
 
     /**
      * Constructor for deadline command
      * @param details
      */
-    public DeadlineCommand(String details) {
+    public DeadlineCommand(String details, List<Tag> tags) {
         super(details);
         breakDownTask(details);
+        this.tags = tags;
     }
 
     /**
@@ -69,7 +73,7 @@ public class DeadlineCommand extends Command {
      * @param tasks
      */
     public void addDeadlineTask(TaskList tasks) {
-        deadlineTaskObject = new Deadline(deadlineTask, formattedBy);
+        deadlineTaskObject = new Deadline(deadlineTask, tags, formattedBy);
         tasks.addTask(deadlineTaskObject);
     }
 

@@ -1,5 +1,10 @@
 package store;
 
+import tag.Tag;
+
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Represents a Task
  * @author Wen Ting
@@ -8,14 +13,16 @@ package store;
 public class Task {
     protected String description;
     protected boolean isDone;
+    protected List<Tag> tags;
 
     /**
      * Constructor for Task
      * @param description of task
      */
-    public Task(String description) {
+    public Task(String description, List<Tag> tags) {
         this.description = description;
         this.isDone = false;
+        this.tags = tags;
     }
 
 
@@ -55,4 +62,27 @@ public class Task {
     public String toSaveFormat() {
         return getStatusIcon() + " | " + description;
     }
+
+    /**
+     * method to add tags related to task
+     * @param tagString of tags
+     */
+    public void addTags(String tagString) {
+        if (tagString.isEmpty()) {
+            return;
+        }
+        String[] tagArray = tagString.split(",");
+        for (String tagName : tagArray) {
+            tags.add(new Tag(tagName));
+        }
+    }
+
+    public List<Tag> getTags() {
+        return tags;
+    }
+
+    public boolean hasTag(String tagName) {
+        return tags.contains(new Tag(tagName));
+    }
+
 }

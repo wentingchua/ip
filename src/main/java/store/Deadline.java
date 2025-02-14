@@ -2,8 +2,11 @@ package store;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 
 import backend.DateTimeParser;
+import tag.Tag;
 
 
 /**
@@ -19,8 +22,8 @@ public class Deadline extends Task {
      * @param description description of deadline
      * @param by due date for deadline
      */
-    public Deadline(String description, LocalDateTime by) {
-        super(description);
+    public Deadline(String description, List<Tag> tags, LocalDateTime by) {
+        super(description, tags);
         this.by = by;
     }
 

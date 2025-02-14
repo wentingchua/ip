@@ -3,9 +3,11 @@ package commands;
 import store.Storage;
 import store.TaskList;
 import store.Todo;
+import tag.Tag;
 import ui.Ui;
 
 import java.io.IOException;
+import java.util.List;
 
 /**
  * Class representing the Todo command
@@ -14,14 +16,17 @@ public class TodoCommand extends Command {
 
     private String detailsWithNoSpace;
     private Todo todoTask;
+
+    private final List<Tag> tags;
     /**
      * Constructor for todo command
      * @param details of command
      */
-    public TodoCommand(String details) {
+    public TodoCommand(String details, List<Tag> tags) {
         super(details);
         detailsWithNoSpace = details.trim();
-        todoTask = new Todo(details);
+        todoTask = new Todo(details, tags);
+        this.tags = tags;
     }
 
     /**
@@ -77,5 +82,13 @@ public class TodoCommand extends Command {
      */
     public String showTodoTaskMessage(Ui ui, TaskList tasks) {
         return ui.showTaskAdded(todoTask, tasks.getSize());
+    }
+
+    /**
+     * Method to format tags
+     * @return String showing formatted tags
+     */
+    private String formatTags() {
+        return tags.isEmpty() ? "" : " " + String.join(" ", tags.stream().map(t -> "#" + t).toList());
     }
 }

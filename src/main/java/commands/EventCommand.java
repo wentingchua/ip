@@ -4,10 +4,12 @@ import backend.DateTimeParser;
 import store.Storage;
 import store.TaskList;
 import store.Event;
+import tag.Tag;
 import ui.Ui;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.util.List;
 
 /**
  * Class representing the Event command
@@ -20,13 +22,16 @@ public class EventCommand extends Command {
     private LocalDateTime end;
     private Event eventTaskObject;
 
+    private final List<Tag> tags;
+
     /**
      * Constructor for EventCommand
      * @param details The event details string
      */
-    public EventCommand(String details) {
+    public EventCommand(String details, List<Tag> tags) {
         super(details);
         breakDownTask(details);
+        this.tags = tags;
     }
 
     /**
@@ -64,7 +69,7 @@ public class EventCommand extends Command {
      * @param tasks TaskList to add the event
      */
     private void addEventTask(TaskList tasks) {
-        eventTaskObject = new Event(eventTask, start, end);
+        eventTaskObject = new Event(eventTask, tags, start, end);
         tasks.addTask(eventTaskObject);
     }
 

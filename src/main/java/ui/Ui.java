@@ -3,6 +3,8 @@ package ui;
 import store.Task;
 import store.TaskList;
 
+import java.util.List;
+
 /**
  * The Ui class handles interactions with the user, displaying messages
  * and information to the console.
@@ -113,4 +115,35 @@ public class Ui {
         System.out.println(message);
         return message;
     }
+
+    /**
+     * Returns and prints a message indicating that no tasks match given tag.
+     * @param str The search tag that yielded no results.
+     * @return Message indicating that no tasks match given tag.
+     */
+    public String showNoMatchTags(String str) {
+        String message = "No tasks found with tag (" + str + ").";
+        System.out.println(message);
+        return message;
+    }
+
+    public String showMatchedTags(String str, List<Task> matchedTasks) {
+        String message = "Tasks matching tags: "  + str;
+        StringBuilder output = new StringBuilder(message + "\n");
+        for (int i = 0; i < matchedTasks.size(); i++) {
+            output.append(i + 1).append(". ").append(matchedTasks.get(i)).append("\n");
+        }
+        return output.toString();
+    }
+
+    /**
+     * method to return generic messages
+     * @param str
+     * @return message
+     */
+    public String showMessage(String str) {
+        System.out.println(str);
+        return str;
+    }
+
 }

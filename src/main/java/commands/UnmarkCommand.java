@@ -19,7 +19,6 @@ public class UnmarkCommand extends Command {
      */
     public UnmarkCommand(String details) {
         super(details);
-        this.unmarkIndex = Integer.parseInt(details) - 1;
     }
 
     /**
@@ -32,8 +31,25 @@ public class UnmarkCommand extends Command {
      */
     @Override
     public String execute(TaskList tasks, Storage storage,Ui ui) throws IOException {
+        if (getDetails().isEmpty()) {
+            return showErrorMessage(ui);
+        }
+        saveUnmarkIndex();
         tasks.markTaskAsNotDone(unmarkIndex);
         super.saveTasks(tasks, storage);
         return ui.showTaskUnmarked(tasks.getTask(unmarkIndex));
+    }
+
+    /**
+     * Method to return error message
+     * @param ui
+     * @return error message
+     */
+    public String showErrorMessage(Ui ui) {
+        return ui.showError("OOPS!!! unmark should be followed by task number");
+    }
+
+    public void saveUnmarkIndex() {
+        this.unmarkIndex = Integer.parseInt(getDetails()) - 1;
     }
 }

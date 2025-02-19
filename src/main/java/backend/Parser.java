@@ -73,8 +73,8 @@ public class Parser {
                 return ui.showError("OOPS!!! I'm sorry, but I don't know what that means :(");
             }
         } catch (Exception e) {
-            return ui.showError("Invalid input or error processing command. "
-                    + "Note that date and time should be in dd/mm/yyyy ttmm format");
+            e.printStackTrace();
+            return ui.showError("Invalid input or error processing command. ");
         }
     }
 

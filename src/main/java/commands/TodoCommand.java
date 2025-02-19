@@ -14,8 +14,8 @@ import java.util.List;
  */
 public class TodoCommand extends Command {
 
-    private String detailsWithNoSpace;
-    private Todo todoTask;
+    private final String detailsWithNoSpace;
+    private final Todo todoTask;
 
     private final List<Tag> tags;
     /**

@@ -19,12 +19,12 @@ public class Todo extends Task {
     }
     @Override
     public String toString() {
-        return "[T]" + super.toString();
+        return "[T]" + super.toString() + " " + super.tagsToString();
     }
 
     @Override
     public String toSaveFormat() {
-        return "T | " + getStatusIcon() + " | " + description;
+        return "T | " + getStatusIcon() + " | " + description + " " + super.tagsToString();
     }
     
 }

@@ -56,7 +56,7 @@ public class Task {
 
     @Override
     public String toString() {
-        return getStatusIcon() + " " + description;
+        return getStatusIcon() + " " + description ;
     }
 
     public String toSaveFormat() {
@@ -83,6 +83,19 @@ public class Task {
 
     public boolean hasTag(String tagName) {
         return tags.contains(new Tag(tagName));
+    }
+
+    public String tagsToString() {
+        if (tags.isEmpty()) {
+            return "";
+        }
+        StringBuilder tagsString = new StringBuilder();
+        tagsString.append(" [tags: ");
+        for (Tag tag : tags) {
+            tagsString.append(" ").append(tag);
+        }
+        tagsString.append("]");
+        return tagsString.toString().trim();
     }
 
 }

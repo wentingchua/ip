@@ -30,7 +30,6 @@ public class EventCommand extends Command {
      */
     public EventCommand(String details, List<Tag> tags) {
         super(details);
-        breakDownTask(details);
         this.tags = tags;
     }
 
@@ -52,7 +51,14 @@ public class EventCommand extends Command {
      * @return True if incorrectly formatted
      */
     public boolean isWrongFormat() {
-        return !(super.getDetails().contains("/from") && super.getDetails().contains("/to"));
+        if (getDetails().isEmpty()) {
+            return true;
+        } else if (!getDetails().contains("/from")) {
+            return true;
+        } else if (!getDetails().contains("/to?)")) {
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -61,7 +67,8 @@ public class EventCommand extends Command {
      * @return system error message
      */
     public String showErrorMessage(Ui ui) {
-        return ui.showError("OOPS!!! Please follow this format: event task /from time /to time");
+        return ui.showError("OOPS!!! Please follow this format: " +
+                "event task /from dd/mm/yyyy ttmm /to dd/mm/yyyy ttmm");
     }
 
     /**
@@ -96,6 +103,7 @@ public class EventCommand extends Command {
         if (isWrongFormat()) {
             return showErrorMessage(ui);
         }
+        breakDownTask(getDetails());
         addEventTask(tasks);
         super.saveTasks(tasks, storage);
         return showEventMessage(ui, tasks);

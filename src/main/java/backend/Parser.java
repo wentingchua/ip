@@ -149,7 +149,6 @@ public class Parser {
                 task.markAsDone();
             }
         } catch (Exception e) {
-            System.out.println("Error parsing task: " + line);
             e.printStackTrace();
             return null;
         }

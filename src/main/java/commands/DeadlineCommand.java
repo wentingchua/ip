@@ -28,7 +28,6 @@ public class DeadlineCommand extends Command {
      */
     public DeadlineCommand(String details, List<Tag> tags) {
         super(details);
-        breakDownTask(details);
         this.tags = tags;
     }
 
@@ -56,7 +55,7 @@ public class DeadlineCommand extends Command {
      * @return False if formatted correctly
      */
     public boolean isWrongFormat() {
-        return !super.getDetails().contains("/by");
+        return !super.getDetails().contains("/by") || getDetails().isEmpty();
     }
 
     /**
@@ -100,6 +99,7 @@ public class DeadlineCommand extends Command {
         if (isWrongFormat()) {
             return showErrorMessage(ui);
         }
+        breakDownTask(getDetails());
         formatDeadline(by);
         addDeadlineTask(tasks);
         super.saveTasks(tasks, storage);

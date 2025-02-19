@@ -12,21 +12,21 @@ bye: Exits the chatbot.
 
 list: Displays all tasks.
 
-mark : Marks a task as completed.
+mark [task number] : Marks a task as completed.
 
-unmark : Marks a task as incomplete.
+unmark [task number] : Marks a task as incomplete.
 
-delete : Deletes a task from the list.
+delete [task number] : Deletes a task from the list.
 
-todo  #tag1 #tag2: Adds a new To-Do task with optional tags.
+todo [task] #tag1 #tag2: Adds a new To-Do task with optional tags.
 
-deadline  /by <date/time> #tag1 #tag2: Adds a new Deadline task with a due date and optional tags.
+deadline [task]  /by <date/time> #tag1 #tag2: Adds a new Deadline task with a due date and optional tags.
 
-event  /from <date/time> /to <date/time> #tag1 #tag2: Adds a new Event task with a start and end time and optional tags.
+event [task]  /from <date/time> /to <date/time> #tag1 #tag2: Adds a new Event task with a start and end time and optional tags.
 
-find : Searches for tasks containing the keyword.
+find [keyword] : Searches for tasks containing the keyword.
 
-findtag : Searches for tasks associated with a specific tag.
+findtag [tag] : Searches for tasks associated with a specific tag.
 
 ## How to Use
 

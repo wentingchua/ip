@@ -13,7 +13,7 @@ import javafx.stage.Stage;
  */
 public class Main extends Application {
 
-    private Dusty dusty = new Dusty("data/tasks.txt");
+    private Dusty dusty = new Dusty("data/tasks_demo.txt");
 
     @Override
     public void start(Stage stage) {

@@ -1,9 +1,8 @@
 package store;
 
-import tag.Tag;
-
-import java.util.ArrayList;
 import java.util.List;
+
+import tag.Tag;
 
 /**
  * Represents a Task
@@ -56,7 +55,7 @@ public class Task {
 
     @Override
     public String toString() {
-        return getStatusIcon() + " " + description ;
+        return getStatusIcon() + " " + description;
     }
 
     public String toSaveFormat() {
@@ -85,6 +84,10 @@ public class Task {
         return tags.contains(new Tag(tagName));
     }
 
+    /**
+     * Method to covert tags to string
+     * @return
+     */
     public String tagsToString() {
         if (tags.isEmpty()) {
             return "";

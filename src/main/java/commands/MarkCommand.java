@@ -1,11 +1,10 @@
 package commands;
 
+import java.io.IOException;
+
 import store.Storage;
-import store.Task;
 import store.TaskList;
 import ui.Ui;
-
-import java.io.IOException;
 
 /**
  * Class representing the Mark command
@@ -24,7 +23,7 @@ public class MarkCommand extends Command {
 
 
     /**
-     *
+     * Method to execute mark command
      * @param tasks The TaskList to work with.
      * @param storage The Storage to save or load tasks
      * @param ui The messages the user will see

@@ -1,16 +1,24 @@
 package commands;
 
-import tag.Tag;
-import store.Task;
-import store.TaskList;
-import store.Storage;
-import ui.Ui;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import store.Storage;
+import store.Task;
+import store.TaskList;
+import tag.Tag;
+import ui.Ui;
+
+/**
+ * Class representing Find tag command
+ */
 public class FindTagCommand extends Command {
     private final Tag tag;
 
+    /**
+     * Constructor for find tag command
+     * @param tag
+     */
     public FindTagCommand(String tag) {
         super(tag);
         this.tag = new Tag(tag);
@@ -33,8 +41,8 @@ public class FindTagCommand extends Command {
             return ui.showNoMatchTags(tag.toString());
         }
 
-        return ui.showMessage("Tasks with " + tag + ":\n" +
-                matchingTasks.stream().map(Task::toString).collect(Collectors.joining("\n")));
+        return ui.showMessage("Tasks with " + tag + ":\n"
+                + matchingTasks.stream().map(Task::toString).collect(Collectors.joining("\n")));
     }
 
 }

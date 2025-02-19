@@ -16,7 +16,7 @@ public class ByeCommand extends Command {
     }
 
     /**
-     *
+     * Method to execute
      * @param tasks The TaskList to work with.
      * @param storage The Storage to save or load tasks
      * @param ui The messages the user will see
@@ -28,7 +28,7 @@ public class ByeCommand extends Command {
     }
 
     /**
-     *
+     * Method to check if it is a bye command
      * @return true since this is a Bye class
      */
     @Override

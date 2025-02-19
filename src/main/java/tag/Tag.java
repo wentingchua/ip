@@ -2,6 +2,9 @@ package tag;
 
 import java.util.Objects;
 
+/**
+ * Class representing a tag
+ */
 public class Tag {
     private final String name;
 

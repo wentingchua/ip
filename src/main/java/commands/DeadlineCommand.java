@@ -1,15 +1,15 @@
 package commands;
 
-import backend.DateTimeParser;
-import store.Storage;
-import store.TaskList;
-import store.Deadline;
-import tag.Tag;
-import ui.Ui;
-
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.List;
+
+import backend.DateTimeParser;
+import store.Deadline;
+import store.Storage;
+import store.TaskList;
+import tag.Tag;
+import ui.Ui;
 
 /**
  * Class representing the Deadline command
@@ -44,7 +44,6 @@ public class DeadlineCommand extends Command {
     /**
      * Method to format deadline in dd/mm/yyyy tt/mm format
      * @param by
-     * @return formatted deadline
      */
     public void formatDeadline(String by) {
         formattedBy = DateTimeParser.parseDateTime(by);

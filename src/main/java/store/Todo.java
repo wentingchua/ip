@@ -1,9 +1,8 @@
 package store;
 
-import tag.Tag;
-
-import java.util.ArrayList;
 import java.util.List;
+
+import tag.Tag;
 
 /**
  * Represents a todo
@@ -19,12 +18,11 @@ public class Todo extends Task {
     }
     @Override
     public String toString() {
-        return "[T]" + super.toString() + " " + super.tagsToString();
+        return "[T]" + super.toString() + " ";
     }
 
     @Override
     public String toSaveFormat() {
-        return "T | " + getStatusIcon() + " | " + description + " " + super.tagsToString();
+        return "T | " + getStatusIcon() + " | " + description + " ";
     }
-    
 }

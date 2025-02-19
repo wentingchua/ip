@@ -1,11 +1,10 @@
 package commands;
 
+import java.io.IOException;
+
 import store.Storage;
-import store.Task;
 import store.TaskList;
 import ui.Ui;
-
-import java.io.IOException;
 
 /**
  * Class representing the Unmark command
@@ -22,7 +21,7 @@ public class UnmarkCommand extends Command {
     }
 
     /**
-     *
+     * Method to execute unmark command
      * @param tasks The TaskList to work with.
      * @param storage The Storage to save or load tasks
      * @param ui The messages the user will see
@@ -30,7 +29,7 @@ public class UnmarkCommand extends Command {
      * @throws IOException
      */
     @Override
-    public String execute(TaskList tasks, Storage storage,Ui ui) throws IOException {
+    public String execute(TaskList tasks, Storage storage, Ui ui) throws IOException {
         if (getDetails().isEmpty()) {
             return showErrorMessage(ui);
         }

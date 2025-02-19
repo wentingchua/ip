@@ -1,11 +1,11 @@
 package commands;
 
-import store.Storage;
-import store.TaskList;
-import store.Task;
-import ui.Ui;
-
 import java.io.IOException;
+
+import store.Storage;
+import store.Task;
+import store.TaskList;
+import ui.Ui;
 
 /**
  * Class representing the Find command

@@ -1,11 +1,12 @@
 package commands;
 
+import java.io.IOException;
+
 import store.Storage;
-import store.TaskList;
 import store.Task;
+import store.TaskList;
 import ui.Ui;
 
-import java.io.IOException;
 
 /**
  * Class representing the Delete command

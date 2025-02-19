@@ -1,15 +1,15 @@
 package commands;
 
-import backend.DateTimeParser;
-import store.Storage;
-import store.TaskList;
-import store.Event;
-import tag.Tag;
-import ui.Ui;
-
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.List;
+
+import backend.DateTimeParser;
+import store.Event;
+import store.Storage;
+import store.TaskList;
+import tag.Tag;
+import ui.Ui;
 
 /**
  * Class representing the Event command
@@ -67,8 +67,8 @@ public class EventCommand extends Command {
      * @return system error message
      */
     public String showErrorMessage(Ui ui) {
-        return ui.showError("OOPS!!! Please follow this format: " +
-                "event task /from dd/mm/yyyy ttmm /to dd/mm/yyyy ttmm");
+        return ui.showError("OOPS!!! Please follow this format: "
+                + "event task /from dd/mm/yyyy ttmm /to dd/mm/yyyy ttmm");
     }
 
     /**

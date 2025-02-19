@@ -1,13 +1,15 @@
 package commands;
 
+import java.io.IOException;
+import java.util.List;
+
 import store.Storage;
 import store.TaskList;
 import store.Todo;
 import tag.Tag;
 import ui.Ui;
 
-import java.io.IOException;
-import java.util.List;
+
 
 /**
  * Class representing the Todo command

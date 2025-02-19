@@ -1,11 +1,11 @@
 package commands;
 
+import java.io.IOException;
+
 import store.Storage;
-import store.Task;
 import store.TaskList;
 import ui.Ui;
 
-import java.io.IOException;
 
 /**
  * Abstract class representing a command.

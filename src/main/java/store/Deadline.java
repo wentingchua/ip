@@ -2,7 +2,6 @@ package store;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.List;
 
 import backend.DateTimeParser;
@@ -29,13 +28,13 @@ public class Deadline extends Task {
 
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (by: " + DateTimeParser.formatDateTime(by) + ")" + " " + super.tagsToString();
+        return "[D]" + super.toString() + " (by: " + DateTimeParser.formatDateTime(by) + ")" + " ";
     }
 
     @Override
     public String toSaveFormat() {
         return "D | " + getStatusIcon() + " | " + description + " | "
-                + by.format(DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm")) + " " + super.tagsToString();
+                + by.format(DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm")) + " ";
     }
 
 }

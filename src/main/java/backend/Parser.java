@@ -3,7 +3,17 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import commands.*;
+import commands.ByeCommand;
+import commands.Command;
+import commands.DeadlineCommand;
+import commands.DeleteCommand;
+import commands.EventCommand;
+import commands.FindCommand;
+import commands.FindTagCommand;
+import commands.ListCommand;
+import commands.MarkCommand;
+import commands.TodoCommand;
+import commands.UnmarkCommand;
 import store.Deadline;
 import store.Event;
 import store.Storage;
@@ -160,9 +170,14 @@ public class Parser {
      * Helper class to store the result of tag extraction.
      */
     private static class TagExtractionResult {
-        String cleanedDetails;
-        List<Tag> tags;
+        private String cleanedDetails;
+        private List<Tag> tags;
 
+        /**
+         * Constructor for tag extraction result
+         * @param cleanedDetails
+         * @param tags
+         */
         TagExtractionResult(String cleanedDetails, List<Tag> tags) {
             this.cleanedDetails = cleanedDetails;
             this.tags = tags;

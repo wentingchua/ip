@@ -16,7 +16,7 @@ public class ListCommand extends Command {
     }
 
     /**
-     *
+     * Method to execute list command
      * @param tasks The TaskList to work with.
      * @param storage The Storage to save or load tasks
      * @param ui The messages the user will see

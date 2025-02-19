@@ -1,9 +1,9 @@
 package ui;
 
+import java.util.List;
+
 import store.Task;
 import store.TaskList;
-
-import java.util.List;
 
 /**
  * The Ui class handles interactions with the user, displaying messages
@@ -127,8 +127,14 @@ public class Ui {
         return message;
     }
 
+    /**
+     * Method to return message if there are matched tags
+     * @param str
+     * @param matchedTasks
+     * @return
+     */
     public String showMatchedTags(String str, List<Task> matchedTasks) {
-        String message = "Tasks matching tags: "  + str;
+        String message = "Tasks matching tags: " + str;
         StringBuilder output = new StringBuilder(message + "\n");
         for (int i = 0; i < matchedTasks.size(); i++) {
             output.append(i + 1).append(". ").append(matchedTasks.get(i)).append("\n");

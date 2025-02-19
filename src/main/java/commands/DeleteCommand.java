@@ -21,7 +21,6 @@ public class DeleteCommand extends Command {
      */
     public DeleteCommand(String details) {
         super(details);
-        deleteIndex = Integer.parseInt(details) - 1;
     }
 
     /**
@@ -33,9 +32,59 @@ public class DeleteCommand extends Command {
      * @throws IOException
      */
     public String execute(TaskList tasks, Storage storage, Ui ui) throws IOException {
+        if (hasEmptyError()) {
+            return handleEmptyError(ui);
+        }
+        if (hasOutOfBoundsError(tasks)) {
+            return handleOutOfBoundsError(ui);
+        }
         deleteTaskFromList(tasks);
         saveTaskList(tasks, storage);
         return showDeletionMessage(ui, tasks);
+    }
+
+    /**
+     * Method to check if input has task number
+     * @return boolean true if input is empty
+     */
+    public boolean hasEmptyError() {
+        return getDetails().isEmpty();
+    }
+
+    /**
+     * Method to check if task number is within bounds
+     * @param tasks
+     * @return true if input is out of bound
+     */
+    public boolean hasOutOfBoundsError(TaskList tasks) {
+        saveDeleteIndex();
+        return deleteIndex < 1 || deleteIndex > tasks.getSize();
+    }
+
+    /**
+     * Method to show error message when input is empty
+     * @param ui
+     * @return error message
+     */
+    public String handleEmptyError(Ui ui) {
+        return ui.showError("OOPS!!!! delete command must be followed by task number");
+    }
+
+    /**
+     * Method to show error message when input is out of bounds
+     * @param ui
+     * @return error message
+     */
+    public String handleOutOfBoundsError(Ui ui) {
+        return ui.showError("OOPS!!! The task number you have given is out of bounds :(");
+    }
+
+
+    /**
+     * Method to save delete index
+     */
+    public void saveDeleteIndex() {
+        deleteIndex = Integer.parseInt(getDetails()) - 1;
     }
 
     /**

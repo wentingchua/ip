@@ -1,6 +1,7 @@
 package store;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import backend.DateTimeParser;
@@ -34,7 +35,8 @@ public class Event extends Task {
 
     @Override
     public String toSaveFormat() {
-
-        return "E | " + getStatusIcon() + " | " + description + " | " + from + " | " + to;
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm");
+        return "E | " + (isDone ? "1" : "0") + " | " + description + " | "
+                + from.format(formatter) + " | " + to.format(formatter);
     }
 }

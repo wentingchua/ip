@@ -33,7 +33,7 @@ public class Deadline extends Task {
 
     @Override
     public String toSaveFormat() {
-        return "D | " + getStatusIcon() + " | " + description + " | "
+        return "D | " + (isDone ? "1" : "0") + " | " + description + " | "
                 + by.format(DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm")) + " ";
     }
 

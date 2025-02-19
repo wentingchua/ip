@@ -1,6 +1,7 @@
 package store;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import tag.Tag;
 
@@ -59,7 +60,14 @@ public class Task {
     }
 
     public String toSaveFormat() {
-        return getStatusIcon() + " | " + description;
+        return (isDone ? "1" : "0") + " | " + description + formatTags();
+    }
+
+    private String formatTags() {
+        if (tags.isEmpty()) {
+            return "";
+        }
+        return " | " + tags.stream().map(Tag::getName).collect(Collectors.joining(","));
     }
 
     /**
@@ -82,23 +90,6 @@ public class Task {
 
     public boolean hasTag(String tagName) {
         return tags.contains(new Tag(tagName));
-    }
-
-    /**
-     * Method to covert tags to string
-     * @return
-     */
-    public String tagsToString() {
-        if (tags.isEmpty()) {
-            return "";
-        }
-        StringBuilder tagsString = new StringBuilder();
-        tagsString.append(" [tags: ");
-        for (Tag tag : tags) {
-            tagsString.append(" ").append(tag);
-        }
-        tagsString.append("]");
-        return tagsString.toString().trim();
     }
 
 }

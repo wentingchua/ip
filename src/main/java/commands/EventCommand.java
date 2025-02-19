@@ -55,7 +55,7 @@ public class EventCommand extends Command {
             return true;
         } else if (!getDetails().contains("/from")) {
             return true;
-        } else if (!getDetails().contains("/to?)")) {
+        } else if (!getDetails().contains("/to")) {
             return true;
         }
         return false;

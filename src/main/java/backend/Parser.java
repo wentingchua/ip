@@ -97,7 +97,6 @@ public class Parser {
     private static TagExtractionResult extractTags(String input) {
         List<Tag> tags = new ArrayList<>();
         StringBuilder cleanDetails = new StringBuilder();
-
         for (String word : input.split(" ")) {
             if (word.startsWith("#")) {
                 tags.add(new Tag(word.substring(1))); // Remove '#' and store as Tag object
@@ -105,7 +104,6 @@ public class Parser {
                 cleanDetails.append(word).append(" ");
             }
         }
-
         return new TagExtractionResult(cleanDetails.toString().trim(), tags);
     }
 
@@ -119,7 +117,6 @@ public class Parser {
      * @return The parsed Task object, or null if the line is invalid.
      */
     public static Task parseTaskFromFile(String line) {
-
         String[] parts = line.split(" \\| ");
 
         if (parts.length < 3) { // Ensure the expected number of parts
@@ -128,7 +125,19 @@ public class Parser {
         }
 
         String type = parts[0];
-        boolean isDone = parts[1].equals("1");
+        boolean isDone = false;
+
+        // Handle both [X]/[ ] and 0/1 formats for status
+        String statusIcon = parts[1].trim();
+        if (statusIcon.equals("1") || statusIcon.equals("[X]")) {
+            isDone = true;
+        } else if (statusIcon.equals("0") || statusIcon.equals("[ ]")) {
+            isDone = false;
+        } else {
+            System.out.println("Invalid status icon format: " + statusIcon);
+            return null;
+        }
+
         String description = parts[2];
         Task task = null;
 
@@ -143,12 +152,12 @@ public class Parser {
                 task = new Todo(description, tags);
                 break;
             case "D":
-                LocalDateTime by = DateTimeParser.parseDateTime(parts[3]);
+                LocalDateTime by = DateTimeParser.parseDateTime(parts[3].trim()); // Ensure the date is trimmed
                 task = new Deadline(description, tags, by);
                 break;
             case "E":
-                LocalDateTime from = DateTimeParser.parseDateTime(parts[3]);
-                LocalDateTime to = DateTimeParser.parseDateTime(parts[4]);
+                LocalDateTime from = DateTimeParser.parseDateTime(parts[3].trim());
+                LocalDateTime to = DateTimeParser.parseDateTime(parts[4].trim());
                 task = new Event(description, tags, from, to);
                 break;
             default:

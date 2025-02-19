@@ -52,7 +52,7 @@ public class DustyTest {
             Hello! I'm Dusty
             How can I help you?
             _______________
-            Invalid input or error processing command. 
+            Invalid input or error processing command.
             Bye! See you next time!""";
 
         runDusty(input);

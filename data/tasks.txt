@@ -1,61 +1,53 @@
-T | [ ] | sleep
-T | [ ] | eat
-T | [ ] | stop coding
-T | [ ] | sleep
-D | [ ] | essay | 23/11/2332 2359
+T | [ ] | sleep 
+T | [ ] | eat 
+T | [ ] | stop coding 
+T | [ ] | sleep 
 E | [ ] | meeting | 1111-11-11T12:34 | 1111-11-12T13:34
-T | [ ] | sleep
-D | [ ] | essay | 01/02/2025 2359
+T | [ ] | sleep 
 E | [ ] | meeting | 2025-01-01T10:00 | 2025-01-01T12:00
-T | [ ] | sleep
-T | [ ] | sleep
-T | [ ] | sleep
-T | [ ] | sleep
-T | [ ] | sleep
-T | [ ] | sleep
-T | [ ] | sleep
-T | [ ] | sleep
-T | [ ] | sleep
-T | [ ] | sleep
-T | [ ] | sleep
-T | [ ] | sleep
-T | [ ] | sleep
-T | [ ] | sleep
-T | [ ] | sleep
-T | [ ] | sleep
-T | [ ] | sleep
-D | [ ] | essay | 01/02/2025 2359
-T | [ ] | sleep
+T | [ ] | sleep 
+T | [ ] | sleep 
+T | [ ] | sleep 
+T | [ ] | sleep 
+T | [ ] | sleep 
+T | [ ] | sleep 
+T | [ ] | sleep 
+T | [ ] | sleep 
+T | [ ] | sleep 
+T | [ ] | sleep 
+T | [ ] | sleep 
+T | [ ] | sleep 
+T | [ ] | sleep 
+T | [ ] | sleep 
+T | [ ] | sleep 
+T | [ ] | sleep 
+T | [ ] | sleep 
+T | [ ] | sleep 
 E | [ ] | meeting | 2025-01-01T10:00 | 2025-01-01T12:00
-D | [ ] | essay | 01/02/2025 2359
-T | [ ] | sleep
+T | [ ] | sleep 
 E | [ ] | meeting | 2025-01-01T10:00 | 2025-01-01T12:00
-D | [ ] | essay | 01/02/2025 2359
-T | [ ] | sleep
+T | [ ] | sleep 
 E | [ ] | meeting | 2025-01-01T10:00 | 2025-01-01T12:00
-D | [ ] | essay | 01/02/2025 2359
-T | [ ] | sleep
+T | [ ] | sleep 
 E | [ ] | meeting | 2025-01-01T10:00 | 2025-01-01T12:00
-D | [ ] | essay | 01/02/2025 2359
-T | [ ] | sleep
+T | [ ] | sleep 
 E | [ ] | meeting | 2025-01-01T10:00 | 2025-01-01T12:00
-D | [ ] | essay | 01/02/2025 2359
-T | [ ] | sleep
+T | [ ] | sleep 
 E | [ ] | meeting | 2025-01-01T10:00 | 2025-01-01T12:00
-D | [ ] | essay | 01/02/2025 2359
-T | [ ] | sleep
+T | [ ] | sleep 
 E | [ ] | meeting | 2025-01-01T10:00 | 2025-01-01T12:00
-D | [ ] | essay | 01/02/2025 2359
-T | [ ] | sleep
+T | [ ] | sleep 
 E | [ ] | meeting | 2025-01-01T10:00 | 2025-01-01T12:00
-D | [ ] | essay | 01/02/2025 2359
-T | [ ] | sleep
+T | [ ] | sleep 
 E | [ ] | meeting | 2025-01-01T10:00 | 2025-01-01T12:00
-T | [ ] | sleep
-T | [ ] | sleep
-T | [ ] | sleep
-T | [ ] | sleep
-T | [ ] | sleep
-T | [ ] | sleep
-T | [ ] | sleep
-T | [ ] | sleep
+T | [ ] | sleep 
+T | [ ] | sleep 
+T | [ ] | sleep 
+T | [ ] | sleep 
+T | [ ] | sleep 
+T | [ ] | sleep 
+T | [ ] | sleep 
+T | [ ] | sleep 
+T | [ ] | eat 
+T | [ ] | sleep 
+T | [ ] | eat 

@@ -52,7 +52,7 @@ public class DustyTest {
             Hello! I'm Dusty
             How can I help you?
             _______________
-            Invalid input or error processing command. Note that date and time should be in dd/mm/yyyy ttmm format
+            Invalid input or error processing command. 
             Bye! See you next time!""";
 
         runDusty(input);
@@ -71,7 +71,7 @@ public class DustyTest {
             Hello! I'm Dusty
             How can I help you?
             _______________
-            OOPS!!! Please follow this format: event task /from time /to time
+            OOPS!!! Please follow this format: event task /from dd/mm/yyyy ttmm /to dd/mm/yyyy ttmm
             Bye! See you next time!""";
 
         runDusty(input);

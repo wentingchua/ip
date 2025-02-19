@@ -84,7 +84,7 @@ public class Parser {
             }
         } catch (Exception e) {
             e.printStackTrace();
-            return ui.showError("Invalid input or error processing command. ");
+            return ui.showError("Invalid input or error processing command.");
         }
     }
 

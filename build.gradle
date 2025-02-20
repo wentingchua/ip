@@ -49,7 +49,6 @@ application {
 
 shadowJar {
     archiveBaseName = "dusty"
-    archiveClassifier = null
 }
 
 checkstyle {

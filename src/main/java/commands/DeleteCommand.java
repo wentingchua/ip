@@ -59,7 +59,8 @@ public class DeleteCommand extends Command {
      */
     public boolean hasOutOfBoundsError(TaskList tasks) {
         saveDeleteIndex();
-        return deleteIndex < 1 || deleteIndex > tasks.getSize();
+        System.out.println(deleteIndex);
+        return deleteIndex + 1 <= 0 || deleteIndex + 1 > tasks.getSize();
     }
 
     /**

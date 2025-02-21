@@ -23,10 +23,10 @@ Deletes a task from the list.
 ### todo [task] #tag1 #tag2
 Adds a new To-Do task with optional tags.
 
-### deadline [task]  /by <date/time> #tag1 #tag2
+### deadline [task]  /by <dd/mm/yyyy ttmm> #tag1 #tag2
 Adds a new Deadline task with a due date and optional tags.
 
-### event [task]  /from <date/time> /to <date/time> #tag1 #tag2
+### event [task]  /from <dd/mm/yyyy ttmm> /to <dd/mm/yyyy ttmm> #tag1 #tag2
 Adds a new Event task with a start and end time and optional tags.
 
 ### find [keyword]

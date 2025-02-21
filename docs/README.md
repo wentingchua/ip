@@ -8,9 +8,6 @@ Dusty is a chat bot application built using JavaFX. It provides a simple user in
 
 Dusty supports the following commands:
 
-### bye
-Exits the chatbot.
-
 ### list
 Displays all tasks.
 
